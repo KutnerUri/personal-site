@@ -33,6 +33,7 @@ const articles = [
     architectures people can follow, guides people actually use, and a good collection of
     lessons from the ones that didn't.
   </p>
+  <p>I've built design systems, live component previews, and the tools around them.</p>
   <p>This is where I keep the things I make, and what I learn making them.</p>
   <ul class="links">
     {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
@@ -53,7 +54,7 @@ const articles = [
         </svg>
         <div>
           <h3>Retrograde Tracker</h3>
-          <p>Which planets are retrograde, when, and for how long.</p>
+          <p>Which planets are retrograde, and when.</p>
         </div>
       </a>
       <a class="philo" href="https://philo.nefzen.dev/">
@@ -66,20 +67,22 @@ const articles = [
         </svg>
         <div>
           <h3>Greek Philosophers</h3>
-          <p>Who taught whom, from Thales to Plotinus.</p>
+          <p>Who taught whom in Greece.</p>
         </div>
       </a>
       <a class="yinamp" href="https://yinamp.nefzen.dev/">
         <div class="lcd"><YinampSpectrum /></div>
         <div>
           <h3>Yinamp</h3>
-          <p>A free, Winamp-inspired music player for YouTube.</p>
+          <p>Winamp-style player for YouTube.</p>
         </div>
       </a>
     </div>
     <div class="soon">
       <div class="sing"><h3>Countdown to the Singularity</h3><p>Coming soon</p></div>
       <div class="body"><h3>Body Simulator</h3><p>Coming soon</p></div>
+      <div class="nosmoke"><h3>No Smoke</h3><p>Small promises to quit smoking.</p><p>Coming soon</p></div>
+      <div class="mana"><h3>Mana Therapy</h3><p>Life as a resource game.</p><p>Coming soon</p></div>
     </div>
   </section>
 
@@ -125,7 +128,7 @@ ul { list-style: none; }
 .links a:hover { color: #f4eedc; }
 
 .section-title {
-  padding: 1rem 1.5rem; border-top: 1px solid #34374d;
+  padding: 1rem 1.5rem; padding-left: max(1.5rem, (100% - 42rem) / 2 + 1.5rem); border-top: 1px solid #34374d;
   font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #8b8da3;
 }
 
@@ -158,8 +161,8 @@ ul { list-style: none; }
 .philo h3 { font-size: 2.2rem; }
 .philo p { color: #69665f; font-style: italic; }
 
-.soon { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); border-top: 1px solid #34374d; }
-.soon > div { padding: 1.5rem; text-align: center; }
+.soon { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); grid-auto-rows: 1fr; margin-left: -1px; }
+.soon > div { display: flex; flex-direction: column; justify-content: center; padding: 1.5rem; text-align: center; box-shadow: inset 1px 0 #34374d, inset 0 1px #34374d; }
 .soon h3 { font-size: 1.3rem; }
 .soon p { margin-top: .4rem; }
 .sing { background: #0f1619; color: #ffbc78; }
@@ -167,6 +170,10 @@ ul { list-style: none; }
 .sing p { color: #b1bfc4; }
 .body { background: #fbf7f1; color: #1d1b19; }
 .body p { color: #6b645c; }
+.nosmoke { background: #fff4d1; color: #2b2b2b; }
+.nosmoke p { color: #6b6150; }
+.mana { background: #081226 linear-gradient(90deg, #ff3d49 20%, #a2c7ff 20% 40%, #63c96b 40% 60%, #e6d35c 60% 80%, #9a5dff 80%) top / 100% 4px no-repeat; color: #eaf3ff; }
+.mana p { color: #9fb0cc; }
 
 .writing ul, .writing > p { max-width: 42rem; margin: 0 auto; padding: 0 1.5rem; }
 .writing ul { padding-top: 1rem; }
