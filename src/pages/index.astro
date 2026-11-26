@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SITE_NAME } from 'astro:env/server';
+import YinampSpectrum from '../components/YinampSpectrum.astro';
 ---
 
 <Base
@@ -36,17 +37,7 @@ import { SITE_NAME } from 'astro:env/server';
     </div>
   </a>
   <a class="yinamp" href="https://yinamp.nefzen.dev/">
-    <div class="lcd">
-      <svg viewBox="0 0 200 120" aria-hidden="true" fill="#a6f25c">
-        <rect class="bar" x="2" y="60" width="20" height="60"/>
-        <rect class="bar" x="30" y="25" width="20" height="95" style="animation-delay:-.7s"/>
-        <rect class="bar" x="58" y="45" width="20" height="75" style="animation-delay:-.3s"/>
-        <rect class="bar" x="86" y="5" width="20" height="115" style="animation-delay:-1.4s"/>
-        <rect class="bar" x="114" y="35" width="20" height="85" style="animation-delay:-.9s"/>
-        <rect class="bar" x="142" y="55" width="20" height="65" style="animation-delay:-1.8s"/>
-        <rect class="bar" x="170" y="80" width="20" height="40" style="animation-delay:-.5s"/>
-      </svg>
-    </div>
+    <div class="lcd"><YinampSpectrum /></div>
     <div>
       <h2>Yinamp</h2>
       <p>A free, Winamp-inspired music player for YouTube.</p>
@@ -93,8 +84,6 @@ svg { display: block; width: min(15rem, 60vw); height: auto; }
 .yinamp h2 { font-size: 2.2rem; color: #a6f25c; }
 .yinamp p { color: #c3c5d4; }
 .lcd { padding: 1.5rem; background: #060d06; border: 3px solid; border-color: #23252f #555868 #555868 #23252f; }
-.bar { transform-origin: 0 120px; animation: eq 1.1s ease-in-out infinite alternate; }
-@keyframes eq { from { transform: scaleY(1); } to { transform: scaleY(.35); } }
 
 .philo { background: #faf9f6; color: #1d1d1b; font-family: ui-serif, Georgia, serif; }
 .philo h2 { font-size: 2.2rem; }
@@ -110,5 +99,5 @@ svg { display: block; width: min(15rem, 60vw); height: auto; }
 .body { background: #fbf7f1; color: #1d1b19; }
 .body p { color: #6b645c; }
 
-@media (prefers-reduced-motion: reduce) { .spin, .bar { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
 </style>

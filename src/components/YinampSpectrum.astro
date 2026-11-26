@@ -1,0 +1,93 @@
+---
+// The Yinamp spectrum, as in yinamp/src/visualizer.js: whole LED blocks revealed by
+// clip-path, driven by a simulated signal (a shared pulse, waves travelling across
+// the bands, smoothed noise) that rises fast and falls slowly.
+const ROWS = 12;
+// Shown without JS and with reduced motion.
+const still = [6, 8, 10, 9, 11, 9, 7, 8, 9, 7, 6, 7, 5, 4, 3, 2];
+---
+
+<div class="spectrum" aria-hidden="true" style={`--rows:${ROWS}`}>
+  {still.map((lit) => <span style={`--lit:${lit}`} />)}
+</div>
+
+<style>
+  .spectrum {
+    --pitch: 12px;
+    --led: 9px;
+    display: flex;
+    align-items: end;
+    gap: 4px;
+    width: min(15rem, 60vw);
+    /* The top row is a full LED, with no gap above it. */
+    height: calc(var(--rows) * var(--pitch) - (var(--pitch) - var(--led)));
+  }
+  .spectrum span {
+    flex: 1;
+    height: 100%;
+    clip-path: inset(calc((var(--rows) - var(--lit)) * var(--pitch)) 0 0);
+    background:
+      linear-gradient(to bottom, #ff5252 0 var(--led), transparent var(--led)),
+      repeating-linear-gradient(to top, #a6f25c 0 var(--led), transparent var(--led) var(--pitch));
+  }
+</style>
+
+<script>
+  const phi = (1 + Math.sqrt(5)) / 2;
+  const RISE = 1 / phi;
+  const FALL = 1 / phi ** 3;
+  const STEP_MS = 100;
+
+  for (const el of document.querySelectorAll<HTMLElement>('.spectrum')) animate(el);
+
+  function animate(el: HTMLElement) {
+    const bars = [...el.children] as HTMLElement[];
+    const rows = Number(el.style.getPropertyValue('--rows'));
+    const shown = bars.map((bar) => Number(bar.style.getPropertyValue('--lit')) / rows);
+    const lit = bars.map(() => -1);
+    const noise = bars.map(() => 0);
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0;
+    let last = 0;
+    let visible = false;
+
+    // Yinamp's simulated bands, with the wave spacing kept for any bar count.
+    const bands = (t: number) => {
+      const pulse = 0.55 + 0.2 * Math.sin(t * 2.4) + 0.1 * Math.sin(t * 0.7);
+      return bars.map((_, i) => {
+        const x = (i * 20) / bars.length;
+        const wave = 0.55 + 0.25 * Math.sin(x * 0.45 - t * 1.2) + 0.15 * Math.sin(x * 0.8 + t * 0.65);
+        noise[i] = noise[i] * 0.7 + (Math.random() - 0.5) * 0.12;
+        return Math.max(0.08, Math.min(0.95, 0.12 + pulse * wave + noise[i]));
+      });
+    };
+
+    const tick = (now: number) => {
+      frame = 0;
+      if (now - last >= STEP_MS) {
+        last = now;
+        bands(now / 1000).forEach((target, i) => {
+          shown[i] += (target - shown[i]) * (target > shown[i] ? RISE : FALL);
+          const blocks = Math.round(shown[i] * rows);
+          if (blocks !== lit[i]) bars[i].style.setProperty('--lit', String((lit[i] = blocks)));
+        });
+      }
+      start();
+    };
+    const start = () => {
+      if (!frame && visible && !document.hidden && !motion.matches) frame = requestAnimationFrame(tick);
+    };
+    const stop = () => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+    };
+
+    // Only run while the card is on screen and the tab is visible.
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      visible ? start() : stop();
+    }).observe(el);
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    motion.addEventListener('change', () => (motion.matches ? stop() : start()));
+  }
+</script>
