@@ -1,0 +1,43 @@
+---
+import { SITE_NAME } from 'astro:env/server';
+import Analytics from '../components/Analytics.astro';
+
+interface Props {
+  /** Page title; the site name is used when omitted. */
+  title?: string;
+  description: string;
+  /** Path or URL of the social preview image, e.g. /og.png. */
+  image?: string;
+  themeColor?: string;
+}
+
+const { title, description, image, themeColor = '#ffffff' } = Astro.props;
+const fullTitle = title ? `${title} · ${SITE_NAME}` : SITE_NAME;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = image && new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content={themeColor} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title ?? SITE_NAME} />
+    <meta property="og:description" content={description} />
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+    <Analytics />
+  </body>
+</html>

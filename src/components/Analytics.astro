@@ -1,0 +1,18 @@
+---
+// GoatCounter: cookieless, no consent banner needed. Production builds only.
+import { GOATCOUNTER_CODE } from 'astro:env/server';
+
+const code = GOATCOUNTER_CODE?.trim();
+if (code && !/^[a-z0-9][a-z0-9-]*$/i.test(code)) {
+  throw new Error('GOATCOUNTER_CODE must be the GoatCounter site code, e.g. "kutnerism".');
+}
+const enabled = import.meta.env.PROD && code;
+---
+
+{enabled && (
+  <>
+    {/* Prefix paths with the hostname so one GoatCounter site can track every *.nefzen.dev domain. */}
+    <script is:inline>window.goatcounter = { path: function (p) { return location.hostname + p; } };</script>
+    <script is:inline async data-goatcounter={`https://${code}.goatcounter.com/count`} src="https://gc.zgo.at/count.js"></script>
+  </>
+)}

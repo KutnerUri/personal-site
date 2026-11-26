@@ -1,8 +1,16 @@
 # nefzen.dev
 
-Personal site at https://nefzen.dev/, served by Cloudflare.
+Personal site at https://nefzen.dev/. Astro + Bun, made from the `astro+bun` template in `../templates`.
 
-Currently a single static `index.html` linking to the live projects:
+Settings (domain, site name, GoatCounter code) live in `.env`.
+
+```sh
+bun install
+bun run dev
+bun run build
+```
+
+Links to:
 
 - [Retrograde Tracker](https://retrograde.nefzen.dev/)
 - [Greek Philosophers](https://philo.nefzen.dev/)
