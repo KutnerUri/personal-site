@@ -20,6 +20,8 @@ bun run check     # type-check
 - `src/pages/index.astro`: the home page, including the links and the list of articles.
 - `src/components/YinampSpectrum.astro`: the LED visualizer on the Yinamp card, ported from Yinamp itself.
 - `src/layouts/Base.astro`: shared `<head>` (title, description, canonical and social tags).
+- `public/og.png`: the social preview image. Edit `scripts/og.html`, then run `bun scripts/og.ts` to render it (needs Chrome).
+- `src/pages/sitemap.xml.ts`, `src/pages/robots.txt.ts`: sitemap and robots, built from `SITE_URL`.
 - `src/components/Analytics.astro`: GoatCounter, loaded in production builds only.
 - `.env`: public build settings (`SITE_URL`, `SITE_NAME`, `GOATCOUNTER_CODE`). Committed on purpose; local overrides go in `.env.local`.
 

@@ -19,12 +19,30 @@ const articles = [
   { year: 2019, title: 'Reusing JavaScript tests', href: 'https://medium.com/bitsrc/reusing-javascript-tests-483288d3f733' },
   { year: 2019, title: 'The Vanilla and Flavouring pattern', href: 'https://medium.com/bitsrc/the-vanilla-and-flavouring-pattern-fcf07942a57a' },
 ];
+
+// Structured data so search engines can tie this site to the profiles above.
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE_NAME,
+  url: Astro.site?.href,
+  jobTitle: 'Software developer',
+  description: 'Makes web experiences, and the code factories that build them.',
+  sameAs: links.map((link) => link.href),
+};
 ---
 
 <Base
   description="Uri Kutner makes web experiences, and the code factories that build them. Projects, writing and 14 years of frontend leadership."
   themeColor="#07080d"
+  imageAlt="Uri Kutner: I make web experiences, and the code factories that build them."
 >
+<script
+  slot="head"
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(person)}
+/>
 <header class="intro">
   <h1>{SITE_NAME}</h1>
   <p class="lede">I make web experiences, and the code factories that build them.</p>
