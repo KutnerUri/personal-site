@@ -16,7 +16,7 @@ Done when: all picked projects pass the facelift checklist below, their DNS entr
 
 ## Motivation
 
-The exploration found more good work than the site shows, but most of it looks dated: light-only, tab titles still "React App", default styling, no custom domain. Showing it as-is would undersell it.
+There is more work worth showing than the site lists, but much of it predates my current standards: light-only, default page titles and styling, no custom domain. It deserves a refresh before it goes on the site.
 
 ## Next actions
 
@@ -38,7 +38,7 @@ The exploration found more good work than the site shows, but most of it looks d
 ### Experiences
 
 - [ ] **No Smoke** (`web/no-smoke`, live at nope.nefzen.workers.dev): finish the refactor and grow it into a whole site, not just the splash and onboarding.
-- [ ] **Mana Therapy** (`manatheory`): stalled; it's live twice (mana.nefzen.workers.dev and kutneruri.github.io/manatherapy). Keep one deployment, then show it as coming soon.
+- [ ] **Mana Therapy** (`manatheory`): paused; it's deployed twice (mana.nefzen.workers.dev and kutneruri.github.io/manatherapy). Keep one deployment, then show it as coming soon.
 
 ### Tools
 
@@ -49,13 +49,13 @@ The exploration found more good work than the site shows, but most of it looks d
 
 - [ ] **Interactive button** (`experiments/interactions`): facelift, then pair it with the Medium article on interactive element states (it already links to it).
 - [ ] **Sound FX** (`experiments/sounds`): facelift.
-- [ ] **Surface Elevation** (`web/surfaces`): incomplete, poor performance, looks bad. Finish and fix it, then pair it with the transparency article (not written yet; idea: [transparency-as-a-design-token.md](../../AI/unarchive/4-work/projects/backlog/media-and-writing/transparency/transparency-as-a-design-token.md)).
-- [ ] **qpong** (Oct 2025: vertical, fullscreen, touch play): nice, but needs work to be presentable. It came from a matchmaking idea with `experiments/lobby` and `simple-voip` that didn't work out.
+- [ ] **Surface Elevation** (`web/surfaces`): unfinished; needs performance and visual work. Finish it, then pair it with an upcoming article on transparency as a design token (idea: [transparency-as-a-design-token.md](../../AI/unarchive/4-work/projects/backlog/media-and-writing/transparency/transparency-as-a-design-token.md)).
+- [ ] **qpong** (Oct 2025: vertical, fullscreen, touch play): promising, needs work to be presentable. Started alongside an earlier matchmaking experiment (`experiments/lobby`, `simple-voip`).
 
 ### Skipped
 
-- `web/jsfighter` (physX): checked 2026-11-26. Two days of work in Aug 2022, about 350 lines: a vector class, gravity, forces with a duration, and elastic ball-on-ball collisions, drawn as React divs in a grey box. Balls stop dead at the floor, there are no walls, and the open TODO lists the rest (friction, square shapes, fast-object glitches). Its old dependencies no longer compile. Nothing to show; at most an article idea ("a physics engine from scratch").
-- `experiments/heap` (js-data-structures): a red-black tree exercise.
+- `web/jsfighter` (physX): a short 2022 sketch of a 2D physics engine (vectors, gravity, ball collisions). Too early to show; possibly an article idea ("a physics engine from scratch").
+- `experiments/heap` (js-data-structures): a heap and red-black tree exercise; code only.
 - `experiments/virtual-keyboard`.
 - `experiments/slidebutton` goes into the design system instead.
 
@@ -71,6 +71,7 @@ The exploration found more good work than the site shows, but most of it looks d
 
 ## Reference
 
+- Site goals and audience: `PURPOSE.md`.
 - Signals, live checks and the full project table: `project-exploration.research.md`.
 - Re-run the scan: `bun scripts/scan-projects.ts --github KutnerUri`.
 - Live projects deploy to GitHub Pages under `*.nefzen.dev`; newer ones start from the `astro+bun` template in `~/Documents/projects/web/templates`.

@@ -45,6 +45,7 @@ The site shows only the three live projects and two coming-soon ones. Most of my
 
 ## Reference
 
+- Site goals and audience: `PURPOSE.md`.
 - Project cards: `src/pages/index.astro`, section "Things I made".
 - Already featured: retro-watch (retrograde.nefzen.dev), philosophers-timeline (philo.nefzen.dev), yinamp (yinamp.nefzen.dev). Coming soon: singularity, Body Simulator.
 - Live projects deploy to GitHub Pages under `*.nefzen.dev`; newer ones start from the `astro+bun` template in `~/Documents/projects/web/templates`.
