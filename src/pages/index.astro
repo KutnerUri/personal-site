@@ -44,6 +44,7 @@ const person = {
   set:html={JSON.stringify(person)}
 />
 <header class="intro">
+  <img class="mark" src="/mark.svg" alt="" width="148" height="64" />
   <h1>{SITE_NAME}</h1>
   <p class="lede">I make web experiences, and the code factories that build them.</p>
   <p>
@@ -138,7 +139,10 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 ul { list-style: none; }
 
 .intro { max-width: 42rem; padding: 5rem 1.5rem 4rem; margin: 0 auto; }
-.intro h1 { font-size: clamp(2.5rem, 7vw, 3.5rem); line-height: 1.05; letter-spacing: -.02em; }
+.intro { --name-size: clamp(2.5rem, 7vw, 3.5rem); }
+/* The mark is one golden-ratio step below the name. */
+.intro .mark { display: block; height: calc(var(--name-size) / 1.618); width: auto; margin-bottom: calc(var(--name-size) / 2.618); }
+.intro h1 { font-size: var(--name-size); line-height: 1.05; letter-spacing: -.02em; }
 .intro p { margin-top: 1rem; color: #b7b8cc; }
 .intro .lede { margin-top: 1.25rem; font-size: 1.5rem; line-height: 1.35; color: #f4eedc; text-wrap: balance; }
 .links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: 2rem; }
