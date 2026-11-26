@@ -1,16 +1,33 @@
-# nefzen.dev
+# Uri Kutner — personal site
 
-Personal site at https://nefzen.dev/. Astro + Bun, made from the `astro+bun` template in `../templates`.
+The home of the things I make, and what I learn making them. This is the code behind [nefzen.dev](https://nefzen.dev/).
 
-Settings (domain, site name, GoatCounter code) live in `.env`.
+[![The nefzen.dev home page: intro, and cards for Retrograde Tracker, Greek Philosophers and Yinamp](.github/screenshot.png)](https://nefzen.dev/)
+
+Built with [Astro](https://astro.build/) on [Bun](https://bun.com/) as a static site.
+
+## Develop
 
 ```sh
 bun install
-bun run dev
-bun run build
+bun run dev       # local dev server
+bun run build     # static build into dist/
+bun run check     # type-check
 ```
 
-Links to:
+## Where things are
+
+- `src/pages/index.astro`: the home page, including the links and the list of articles.
+- `src/components/YinampSpectrum.astro`: the LED visualizer on the Yinamp card, ported from Yinamp itself.
+- `src/layouts/Base.astro`: shared `<head>` (title, description, canonical and social tags).
+- `src/components/Analytics.astro`: GoatCounter, loaded in production builds only.
+- `.env`: public build settings (`SITE_URL`, `SITE_NAME`, `GOATCOUNTER_CODE`). Committed on purpose; local overrides go in `.env.local`.
+
+## Deploy
+
+Every push to `main` builds and deploys to GitHub Pages through `.github/workflows/deploy.yml`.
+
+## Projects linked from the site
 
 - [Retrograde Tracker](https://retrograde.nefzen.dev/)
 - [Greek Philosophers](https://philo.nefzen.dev/)
