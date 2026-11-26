@@ -1,7 +1,7 @@
 ---
 id: fdef0a85-e234-4e63-ab05-3ee9652f7f1a
 title: Explore my projects for the personal site
-status: queued  # queued | in-progress | blocked | done | dropped
+status: in-progress  # queued | in-progress | blocked | done | dropped
 ---
 
 # Explore my projects for the personal site
@@ -20,17 +20,21 @@ The site shows only the three live projects and two coming-soon ones. Most of my
 
 ## Next actions
 
-- [ ] Write a Bun script, `scripts/scan-projects.ts`, that visits each project and collects only cheap signals:
-  - [ ] Project folders: children of `~/Documents/projects`, of `web/`, and of other grouping folders such as `AI/` whose children look like projects
-  - [ ] Git: remote URL, first and last commit dates, commit count (from `git log`, not from the code)
-  - [ ] README: first heading and first paragraph
-  - [ ] `package.json`: name, description, framework dependencies (astro, react, vite, electron and similar)
-  - [ ] Live URL: `site` in the Astro config, `public/CNAME`, or a `*.nefzen.dev` / `github.io` link in the README
-  - [ ] Deploy workflow in `.github/workflows`, a built `dist/`, and the number of tracked files
-- [ ] Run it and write the table, sorted by last activity, to `project-exploration.research.md`
-- [ ] Add a suggested shortlist: projects that are live, recently active, or have a long history and a README
-- [ ] Mark the projects I choose in the research file
-- [ ] Create a follow-up task to add the chosen projects to the site
+> 2026-11-26: scan done (local + public GitHub), research file grouped into experiences / tools / experiments. Picks and decisions recorded; action items moved to `project-showcase.task.md`. Still open: keep looking for more projects before DNS is set up.
+
+- [x] Write a Bun script, `scripts/scan-projects.ts`, that visits each project and collects only cheap signals:
+  - [x] Project folders: children of `~/Documents/projects`, of `web/`, and of other grouping folders such as `AI/` whose children look like projects
+  - [x] Git: remote URL, first and last commit dates, commit count (from `git log`, not from the code)
+  - [x] README: first heading and first paragraph
+  - [x] `package.json`: name, description, framework dependencies (astro, react, vite, electron and similar)
+  - [x] Live URL: `site` in the Astro config, `public/CNAME`, or a `*.nefzen.dev` / `github.io` link in the README
+  - [x] Deploy workflow in `.github/workflows`, a built `dist/`, and the number of tracked files
+- [x] Run it and write the table, sorted by last activity, to `project-exploration.research.md`
+- [x] Add a suggested shortlist: projects that are live, recently active, or have a long history and a README
+- [x] Check GitHub Pages and live URLs without running anything (`--github <user>`), note dark mode and polish per site
+- [x] Mark the projects I choose in the research file (two rounds, see "Decisions")
+- [ ] Look further for projects not found yet (other folders, private GitHub repos, Cloudflare Workers)
+- [x] Create a follow-up task to add the chosen projects to the site: `project-showcase.task.md` (polish, look, SEO, DNS, cards)
 
 ## Boundaries
 
